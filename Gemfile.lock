@@ -2,14 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     curb (0.9.3)
-    oj (2.15.0)
+    oj (3.7.12)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   curb (~> 0.9)
-  oj (~> 2.15)
+  oj (~> 3.7)
 
 BUNDLED WITH
-   1.11.2
+   1.17.3
