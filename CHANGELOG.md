@@ -1,5 +1,8 @@
 # Changelog
 ## Version 1
+### 1.0.3
+* Update Oj to 3.8
+
 ### 1.0.2
 * Update Oj
 
