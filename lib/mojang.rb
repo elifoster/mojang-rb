@@ -28,14 +28,20 @@ module Mojang
   # @return [String] The username's user ID.
   def userid(username, date = nil)
     self.profile(username, date, 'id')
-  end
+    profile_str = "https://api.mojang.com/users/profiles/minecraft/#{username}"
+    # If the provided date (or 0, if not provided) does not return anything, try without any date provided at all.
+    # This is necessary because for users with name history's *have* you have to provide some date (and 0 is valid),
+    # while for users who do *not* have name history, giving a date (including 0) will return 204 No Content.
+    # If it is *still* empty after both tries, then error.
+    response = Curl.get(profile_str, { at: date.to_i }).body_str
+    response = Curl.get(profile_str).body_str if response.empty?
+    fail NoSuchUserError.new(query) if response.empty?
+    json = Oj.load(response)
+    if json.key?('error')
+      fail Mojang::Errors::MojangError.new(json['error'], json['errorMessage'])
+    end
 
-  # Gets the username for the given UUID at the given time.
-  # @param uuid [String] The user's UUID (see #{userid})
-  # @param date [Date] The date to get the name at.
-  # @return [String] The user's username at the given time.
-  def username(uuid, date = nil)
-    self.profile(uuid, date, 'name')
+    json['id']
   end
 
   # Gets whether the given username has paid for Minecraft.
@@ -65,34 +71,5 @@ module Mojang
     end
 
     ret
-  end
-
-  private
-
-  PROFILE_STR = 'https://api.mojang.com/users/profiles/minecraft'
-
-  # Gets the profile data.
-  # @param query [String] Either a username or an ID; they are handled in the same way.
-  # @param date [Date] The date to get at.
-  # @param return_val [String] The key in the returned hash to return.
-  # @return [String] The returned value for the return_val key.
-  def self.profile(query, date, return_val)
-    # If provided, try with a date. If not provided, try with no date, then try with 0 for users who have
-    # changed their names. Users who have changed their names, when no date is provided, return 204 No Content, so we
-    # add this check to ensure all possibilities are attempted.
-    if date
-      response = Curl.get("#{PROFILE_STR}/#{query}", { at: date.to_i }).body_str
-    else
-      response = Curl.get("#{PROFILE_STR}/#{query}").body_str
-      if response.empty?
-        response = Curl.get("#{PROFILE_STR}/#{query}", { at: 0 }).body_str
-      end
-    end
-    fail NoSuchUserError.new(query) if response.empty?
-    json = Oj.load(response)
-    if json.key?('error')
-      fail Mojang::Errors::MojangError.new(json['error'], json['errorMessage'])
-    end
-    return json[return_val]
   end
 end
