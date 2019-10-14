@@ -44,16 +44,6 @@ module Mojang
     json['id']
   end
 
-  # Gets whether the given username has paid for Minecraft.
-  # @param username [String] The username to check.
-  # @return [Boolean] Whether they have paid or not.
-  def has_paid?(username)
-    params = { user: username }
-    response = Curl.get('https://minecraft.net/haspaid.jsp', params).body_str
-
-    response == 'true'
-  end
-
   # Gets a user's name history from their UUID.
   # @param uuid [String] The user's ID (see #{userid}).
   # @return [Hash<Symbol/Time, String>] A hash of all the names. Key is either :original, or the Time object of when
