@@ -69,18 +69,29 @@ module Mojang
 
   private
 
+  PROFILE_STR = 'https://api.mojang.com/users/profiles/minecraft'
+
   # Gets the profile data.
   # @param query [String] Either a username or an ID; they are handled in the same way.
   # @param date [Date] The date to get at.
   # @param return_val [String] The key in the returned hash to return.
   # @return [String] The returned value for the return_val key.
   def self.profile(query, date, return_val)
-    params = { at: date.to_i }
-    response = Curl.get("https://api.mojang.com/users/profiles/minecraft/#{query}", params).body_str
+    # If provided, try with a date. If not provided, try with no date, then try with 0 for users who have
+    # changed their names. Users who have changed their names, when no date is provided, return 204 No Content, so we
+    # add this check to ensure all possibilities are attempted.
+    if date
+      response = Curl.get("#{PROFILE_STR}/#{query}", { at: date.to_i }).body_str
+    else
+      response = Curl.get("#{PROFILE_STR}/#{query}").body_str
+      if response.empty?
+        response = Curl.get("#{PROFILE_STR}/#{query}", { at: 0 }).body_str
+      end
+    end
     fail NoSuchUserError.new(query) if response.empty?
     json = Oj.load(response)
     if json.key?('error')
-      fail MojangError.new(json['error'], json['errorMessage'])
+      fail Mojang::Errors::MojangError.new(json['error'], json['errorMessage'])
     end
     return json[return_val]
   end
