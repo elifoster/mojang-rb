@@ -1,4 +1,11 @@
 # Changelog
+## Version 2
+### 2.0.0
+* Update Oj to 3.9
+* Remove `Mojang.username` as this is no longer possible with the Mojang API
+* Remove `Mojang.has_paid?` as this is no longer available with the Mojang API.
+* Fix `Mojang.userid` when used on users who have changed their names in the past. This fix will cause a slight hit to the performance of the function.
+
 ## Version 1
 ### 1.0.3
 * Update Oj to 3.8

@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.authors = ['Eli Foster']
   s.name = 'mojang'
   s.summary = 'Mojang and Minecraft web APIs in Ruby'
-  s.version = '1.0.3'
+  s.version = '2.0.0'
   s.license = 'MIT'
   s.description = 'A Ruby library accessing the Mojang and Minecraft web APIs'
   s.email = 'elifosterwy@gmail.com'
@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
     'LICENSE.md'
   ]
   s.add_runtime_dependency('curb', '~> 0.9')
-  s.add_runtime_dependency('oj', '~> 3.8')
+  s.add_runtime_dependency('oj', '~> 3.9')
 end 
