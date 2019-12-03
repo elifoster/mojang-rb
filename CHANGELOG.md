@@ -1,5 +1,8 @@
 # Changelog
 ## Version 2
+### 2.0.1
+* Update Oj to 3.10
+
 ### 2.0.0
 * Update Oj to 3.9
 * Remove `Mojang.username` as this is no longer possible with the Mojang API
