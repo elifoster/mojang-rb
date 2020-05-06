@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     curb (0.9.10)
-    oj (3.10.0)
+    oj (3.10.6)
 
 PLATFORMS
   ruby
