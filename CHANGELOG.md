@@ -1,5 +1,12 @@
 # Changelog
 ## Version 2
+### 2.0.2
+* Update Oj to 3.11
+* Fix some documentation mistakes
+* Fix unclosed parentheses in MojangError message
+* Fix NoMethodError when running `Mojang.name_history` on an invalid uuid
+* Fix NameErrors and undefined method errors in `Mojang.userid`
+
 ### 2.0.1
 * Update Oj to 3.10
 
