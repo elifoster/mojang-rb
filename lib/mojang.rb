@@ -34,7 +34,7 @@ module Mojang
     # If it is *still* empty after both tries, then error.
     response = Curl.get(profile_str, { at: date.to_i }).body_str
     response = Curl.get(profile_str).body_str if response.empty?
-    fail NoSuchUserError.new(query) if response.empty?
+    fail Mojang::Errors::NoSuchUserError.new(username) if response.empty?
     json = Oj.load(response)
     if json.key?('error')
       fail Mojang::Errors::MojangError.new(json['error'], json['errorMessage'])
