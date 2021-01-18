@@ -50,6 +50,9 @@ module Mojang
   def name_history(uuid)
     response = Curl.get("https://api.mojang.com/user/profiles/#{uuid}/names").body_str
     json = Oj.load(response)
+    if json.key?('error')
+      fail Mojang::Errors::MojangError.new(json['error'], json['errorMessage'])
+    end
     ret = {}
     json.each do |hash|
       if hash.key?('changedToAt')
