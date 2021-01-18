@@ -6,7 +6,7 @@
 <title>
   Module: Mojang
   
-    &mdash; Documentation by YARD 0.9.25
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
@@ -87,7 +87,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Wrapper module around the Mojang and Minecraft web APIs.</p>
+    
+<p>Wrapper module around the Mojang and Minecraft web APIs.</p>
 
 
   </div>
@@ -137,7 +138,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets a user&#39;s name history from their UUID.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets a user&#39;s name history from their UUID.</p>
 </div></span>
   
 </li>
@@ -160,7 +162,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
 </div></span>
   
 </li>
@@ -183,7 +186,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets the User ID (UUID) for the given username at the given time.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the User ID (UUID) for the given username at the given time.</p>
 </div></span>
   
 </li>
@@ -215,7 +219,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets a user&#39;s name history from their UUID.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets a user&#39;s name history from their UUID.</p>
 </div></span>
   
 </li>
@@ -238,7 +243,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
 </div></span>
   
 </li>
@@ -261,7 +267,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets the User ID (UUID) for the given username at the given time.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the User ID (UUID) for the given username at the given time.</p>
 </div></span>
   
 </li>
@@ -287,8 +294,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets a user&#39;s name history from their UUID.
-the name was changed. Value is always the name at that point in time.</p>
+    
+<p>Gets a user&#39;s name history from their UUID. the name was changed. Value is always the name at that point in time.</p>
 
 
   </div>
@@ -307,7 +314,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The user&#39;s ID (see #<span class='object_link'><a href="#userid-class_method" title="Mojang.userid (method)">userid</a></span>).</p>
+        <div class='inline'>
+<p>The user&#39;s ID (see #<span class='object_link'><a href="#userid-class_method" title="Mojang.userid (method)">userid</a></span>).</p>
 </div>
       
     </li>
@@ -325,8 +333,22 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash of all the names. Key is either :original, or the Time object of when</p>
+        <div class='inline'>
+<p>A hash of all the names. Key is either :original, or the Time object of when</p>
 </div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">Mojang::Errors::MojangError</a></span></tt>)</span>
+      
+      
       
     </li>
   
@@ -338,8 +360,6 @@ the name was changed. Value is always the name at that point in time.</p>
       <pre class="lines">
 
 
-51
-52
 53
 54
 55
@@ -351,14 +371,22 @@ the name was changed. Value is always the name at that point in time.</p>
 61
 62
 63
-64</pre>
+64
+65
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_history'>name_history</span><span class='lparen'>(</span><span class='id identifier rubyid_uuid'>uuid</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Curl</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://api.mojang.com/user/profiles/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uuid'>uuid</span><span class='embexpr_end'>}</span><span class='tstring_content'>/names</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body_str'>body_str</span>
   <span class='id identifier rubyid_json'>json</span> <span class='op'>=</span> <span class='const'>Oj</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="" title="Mojang (module)">Mojang</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors.html" title="Mojang::Errors (module)">Errors</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">MojangError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Mojang/Errors/MojangError.html#initialize-instance_method" title="Mojang::Errors::MojangError#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>errorMessage</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
   <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hash'>hash</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>changedToAt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -386,7 +414,8 @@ the name was changed. Value is always the name at that point in time.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
+    
+<p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
 
 
   </div>
@@ -404,7 +433,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash containing keys of the sites, and values of the statuses (green, yellow, red).</p>
+        <div class='inline'>
+<p>A hash containing keys of the sites, and values of the statuses (green, yellow, red).</p>
 </div>
       
     </li>
@@ -463,7 +493,8 @@ the name was changed. Value is always the name at that point in time.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets the User ID (UUID) for the given username at the given time.</p>
+    
+<p>Gets the User ID (UUID) for the given username at the given time.</p>
 
 
   </div>
@@ -482,7 +513,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The username.</p>
+        <div class='inline'>
+<p>The username.</p>
 </div>
       
     </li>
@@ -499,7 +531,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The date to get the ID at.</p>
+        <div class='inline'>
+<p>The date to get the ID at.</p>
 </div>
       
     </li>
@@ -517,8 +550,31 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The username&#39;s user ID.</p>
+        <div class='inline'>
+<p>The username&#39;s user ID.</p>
 </div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">Mojang::Errors::MojangError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Mojang/Errors/NoSuchUserError.html" title="Mojang::Errors::NoSuchUserError (class)">Mojang::Errors::NoSuchUserError</a></span></tt>)</span>
+      
+      
       
     </li>
   
@@ -530,8 +586,6 @@ the name was changed. Value is always the name at that point in time.</p>
       <pre class="lines">
 
 
-29
-30
 31
 32
 33
@@ -546,13 +600,13 @@ the name was changed. Value is always the name at that point in time.</p>
 42
 43
 44
-45</pre>
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_userid'>userid</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_date'>date</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_profile'>profile</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_date'>date</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_profile_str'>profile_str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://api.mojang.com/users/profiles/minecraft/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='comment'># If the provided date (or 0, if not provided) does not return anything, try without any date provided at all.
 </span>  <span class='comment'># This is necessary because for users with name history&#39;s *have* you have to provide some date (and 0 is valid),
@@ -560,7 +614,7 @@ the name was changed. Value is always the name at that point in time.</p>
 </span>  <span class='comment'># If it is *still* empty after both tries, then error.
 </span>  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Curl</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_profile_str'>profile_str</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>at:</span> <span class='id identifier rubyid_date'>date</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body_str'>body_str</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Curl</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_profile_str'>profile_str</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body_str'>body_str</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='id identifier rubyid_fail'>fail</span> <span class='const'>NoSuchUserError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="" title="Mojang (module)">Mojang</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors.html" title="Mojang::Errors (module)">Errors</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors/NoSuchUserError.html" title="Mojang::Errors::NoSuchUserError (class)">NoSuchUserError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Mojang/Errors/NoSuchUserError.html#initialize-instance_method" title="Mojang::Errors::NoSuchUserError#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='id identifier rubyid_json'>json</span> <span class='op'>=</span> <span class='const'>Oj</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="" title="Mojang (module)">Mojang</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors.html" title="Mojang::Errors (module)">Errors</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">MojangError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Mojang/Errors/MojangError.html#initialize-instance_method" title="Mojang::Errors::MojangError#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>errorMessage</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -590,8 +644,8 @@ the name was changed. Value is always the name at that point in time.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets a user&#39;s name history from their UUID.
-the name was changed. Value is always the name at that point in time.</p>
+    
+<p>Gets a user&#39;s name history from their UUID. the name was changed. Value is always the name at that point in time.</p>
 
 
   </div>
@@ -610,7 +664,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The user&#39;s ID (see #<span class='object_link'><a href="#userid-class_method" title="Mojang.userid (method)">userid</a></span>).</p>
+        <div class='inline'>
+<p>The user&#39;s ID (see #<span class='object_link'><a href="#userid-class_method" title="Mojang.userid (method)">userid</a></span>).</p>
 </div>
       
     </li>
@@ -628,8 +683,22 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash of all the names. Key is either :original, or the Time object of when</p>
+        <div class='inline'>
+<p>A hash of all the names. Key is either :original, or the Time object of when</p>
 </div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">Mojang::Errors::MojangError</a></span></tt>)</span>
+      
+      
       
     </li>
   
@@ -641,8 +710,6 @@ the name was changed. Value is always the name at that point in time.</p>
       <pre class="lines">
 
 
-51
-52
 53
 54
 55
@@ -654,14 +721,22 @@ the name was changed. Value is always the name at that point in time.</p>
 61
 62
 63
-64</pre>
+64
+65
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_history'>name_history</span><span class='lparen'>(</span><span class='id identifier rubyid_uuid'>uuid</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Curl</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://api.mojang.com/user/profiles/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uuid'>uuid</span><span class='embexpr_end'>}</span><span class='tstring_content'>/names</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body_str'>body_str</span>
   <span class='id identifier rubyid_json'>json</span> <span class='op'>=</span> <span class='const'>Oj</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="" title="Mojang (module)">Mojang</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors.html" title="Mojang::Errors (module)">Errors</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">MojangError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Mojang/Errors/MojangError.html#initialize-instance_method" title="Mojang::Errors::MojangError#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>errorMessage</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
   <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hash'>hash</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>changedToAt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -689,7 +764,8 @@ the name was changed. Value is always the name at that point in time.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
+    
+<p>Gets the status for the various Mojang and Minecraft servers and web services.</p>
 
 
   </div>
@@ -707,7 +783,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash containing keys of the sites, and values of the statuses (green, yellow, red).</p>
+        <div class='inline'>
+<p>A hash containing keys of the sites, and values of the statuses (green, yellow, red).</p>
 </div>
       
     </li>
@@ -766,7 +843,8 @@ the name was changed. Value is always the name at that point in time.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets the User ID (UUID) for the given username at the given time.</p>
+    
+<p>Gets the User ID (UUID) for the given username at the given time.</p>
 
 
   </div>
@@ -785,7 +863,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The username.</p>
+        <div class='inline'>
+<p>The username.</p>
 </div>
       
     </li>
@@ -802,7 +881,8 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The date to get the ID at.</p>
+        <div class='inline'>
+<p>The date to get the ID at.</p>
 </div>
       
     </li>
@@ -820,8 +900,31 @@ the name was changed. Value is always the name at that point in time.</p>
       
       
         &mdash;
-        <div class='inline'><p>The username&#39;s user ID.</p>
+        <div class='inline'>
+<p>The username&#39;s user ID.</p>
 </div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">Mojang::Errors::MojangError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Mojang/Errors/NoSuchUserError.html" title="Mojang::Errors::NoSuchUserError (class)">Mojang::Errors::NoSuchUserError</a></span></tt>)</span>
+      
+      
       
     </li>
   
@@ -833,8 +936,6 @@ the name was changed. Value is always the name at that point in time.</p>
       <pre class="lines">
 
 
-29
-30
 31
 32
 33
@@ -849,13 +950,13 @@ the name was changed. Value is always the name at that point in time.</p>
 42
 43
 44
-45</pre>
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/mojang.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_userid'>userid</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_date'>date</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_profile'>profile</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_date'>date</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_profile_str'>profile_str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://api.mojang.com/users/profiles/minecraft/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='comment'># If the provided date (or 0, if not provided) does not return anything, try without any date provided at all.
 </span>  <span class='comment'># This is necessary because for users with name history&#39;s *have* you have to provide some date (and 0 is valid),
@@ -863,7 +964,7 @@ the name was changed. Value is always the name at that point in time.</p>
 </span>  <span class='comment'># If it is *still* empty after both tries, then error.
 </span>  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Curl</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_profile_str'>profile_str</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>at:</span> <span class='id identifier rubyid_date'>date</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body_str'>body_str</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Curl</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_profile_str'>profile_str</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body_str'>body_str</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='id identifier rubyid_fail'>fail</span> <span class='const'>NoSuchUserError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="" title="Mojang (module)">Mojang</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors.html" title="Mojang::Errors (module)">Errors</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors/NoSuchUserError.html" title="Mojang::Errors::NoSuchUserError (class)">NoSuchUserError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Mojang/Errors/NoSuchUserError.html#initialize-instance_method" title="Mojang::Errors::NoSuchUserError#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='id identifier rubyid_json'>json</span> <span class='op'>=</span> <span class='const'>Oj</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="" title="Mojang (module)">Mojang</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors.html" title="Mojang::Errors (module)">Errors</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Mojang/Errors/MojangError.html" title="Mojang::Errors::MojangError (class)">MojangError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Mojang/Errors/MojangError.html#initialize-instance_method" title="Mojang::Errors::MojangError#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_json'>json</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>errorMessage</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -881,9 +982,9 @@ the name was changed. Value is always the name at that point in time.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May  6 15:57:18 2020 by
+  Generated on Mon Jan 18 10:36:49 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.25 (ruby-2.6.5).
+  0.9.26 (ruby-3.0.0).
 </div>
 
     </div>
