@@ -26,6 +26,8 @@ module Mojang
   # @param username [String] The username.
   # @param date [Date] The date to get the ID at.
   # @return [String] The username's user ID.
+  # @raise [Mojang::Errors::MojangError]
+  # @raise [Mojang::Errors::NoSuchUserError]
   def userid(username, date = nil)
     profile_str = "https://api.mojang.com/users/profiles/minecraft/#{username}"
     # If the provided date (or 0, if not provided) does not return anything, try without any date provided at all.
@@ -47,6 +49,7 @@ module Mojang
   # @param uuid [String] The user's ID (see #{userid}).
   # @return [Hash<Symbol/Time, String>] A hash of all the names. Key is either :original, or the Time object of when
   # the name was changed. Value is always the name at that point in time.
+  # @raise [Mojang::Errors::MojangError]
   def name_history(uuid)
     response = Curl.get("https://api.mojang.com/user/profiles/#{uuid}/names").body_str
     json = Oj.load(response)
