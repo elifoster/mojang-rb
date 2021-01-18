@@ -22,7 +22,7 @@ module Mojang
       end
 
       def message
-        "#{@msg} (#{@error}"
+        "#{@msg} (#{@error})"
       end
     end
   end
