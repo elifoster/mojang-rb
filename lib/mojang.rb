@@ -27,7 +27,6 @@ module Mojang
   # @param date [Date] The date to get the ID at.
   # @return [String] The username's user ID.
   def userid(username, date = nil)
-    self.profile(username, date, 'id')
     profile_str = "https://api.mojang.com/users/profiles/minecraft/#{username}"
     # If the provided date (or 0, if not provided) does not return anything, try without any date provided at all.
     # This is necessary because for users with name history's *have* you have to provide some date (and 0 is valid),
