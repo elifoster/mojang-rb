@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
     'LICENSE.md'
   ]
   s.add_runtime_dependency('curb', '~> 0.9')
-  s.add_runtime_dependency('oj', '~> 3.11')
+  s.add_runtime_dependency('oj', '~> 3.12')
 end 
