@@ -1,5 +1,8 @@
 # Changelog
 ## Version 2
+### 2.0.3
+* Update Oj to 3.12
+
 ### 2.0.2
 * Update Oj to 3.11
 * Fix some documentation mistakes

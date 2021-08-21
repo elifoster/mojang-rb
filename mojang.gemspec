@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.authors = ['Eli Foster']
   s.name = 'mojang'
   s.summary = 'Mojang and Minecraft web APIs in Ruby'
-  s.version = '2.0.2'
+  s.version = '2.0.3'
   s.license = 'MIT'
   s.description = 'A Ruby library accessing the Mojang and Minecraft web APIs'
   s.email = 'elifosterwy@gmail.com'
